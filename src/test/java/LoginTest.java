@@ -16,7 +16,6 @@ public class LoginTest extends BaseTest{
 
     private static final String BASE_URL = "https://mail.ru";
     private static final String COMPOSE_BUTTON_TEXT = "Написать письмо";
-    private static final String AUTH_BUTTON_TEXT = "Войти";
     private WebDriver driver;
     private MainPage mainPage;
     private EmailPage emailPage;
