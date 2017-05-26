@@ -54,20 +54,4 @@ public class GMainPage {
         return span_text.getText();
     }
 
-
-    public void clickChangeAccountElement() {
-        WebElement changeAccountElement = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(CHANGE_ACCOUNT_ELEMENT));
-        changeAccountElement.click();
-    }
-
-    public void clickUseAnotherAccountElement() {
-        WebElement useAnotherAccountElement = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(USE_ANOTHER_ACCOUNT_ELEMENT));
-        useAnotherAccountElement.click();
-    }
-
-    public void changeDefaultAccount() {
-        clickChangeAccountElement();
-        clickUseAnotherAccountElement();
-    }
-
 }
