@@ -17,8 +17,6 @@ public class LoginGTest extends BaseTest{
     private static final String GMAIL_LABEL = "Gmail";
     private static final String SPAN_TEXT = "NEXT";
     private WebDriver driver;
-    private GMainPage mainPage;
-    private GEmailPage emailPage;
 
     @BeforeClass
     public void Before() {
@@ -38,8 +36,8 @@ public class LoginGTest extends BaseTest{
     @ExternalParameters({ "login", "password" })
     public void loginTest(String getLogin, String getPassword) throws InterruptedException, NoSuchElementException {
 
-        mainPage = new GMainPage(driver);
-        emailPage = new GEmailPage(driver);
+        GMainPage mainPage = new GMainPage(driver);
+        GEmailPage emailPage = new GEmailPage(driver);
 
         mainPage.loginAs(getLogin, getPassword);
         Assert.assertEquals(emailPage.getLabelText(), GMAIL_LABEL);
