@@ -34,7 +34,7 @@ public class LoginAndLogout extends BaseTest{
 
     @Test(dataProvider = "fromCSV")
     @ExternalParameters({ "login", "password" })
-    public void loginTest(String getLogin, String getPassword) throws InterruptedException, NoSuchElementException {
+    public void loginAndlogoutTest(String getLogin, String getPassword) throws InterruptedException, NoSuchElementException {
 
         GoogleSignInPage GoogleSignInPage = new GoogleSignInPage(driver);
         GoogleEmailPage GoogleEmailPage = new GoogleEmailPage(driver);

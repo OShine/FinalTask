@@ -16,8 +16,6 @@ public class GoogleSignInPage {
     private static final By PASSWORD_PASSWORD = By.xpath(".//*[@id='password']/div[1]/div/div[1]/input");
     private static final By PASSWORD_NEXT_BUTTON = By.xpath(".//*[@id='passwordNext']");
     private static final By SPAN_TEXT = By.xpath(".//*[@id='passwordNext']/content/span");
-    private static final By CHANGE_ACCOUNT_ELEMENT = By.xpath(".//*[@id='view_container']/form/div[1]/div/div/div[2]/div/content/span/span");
-    private static final By USE_ANOTHER_ACCOUNT_ELEMENT = By.xpath("//*[text()='Use another account']");
 
     private WebDriver driver;
 
