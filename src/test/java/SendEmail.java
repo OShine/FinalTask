@@ -4,14 +4,17 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.*;
-import pages.GEmailPage;
-import pages.GMainPage;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import pages.GoogleEmailPage;
+import pages.GoogleSignInPage;
 
 /**
- * Created by DenisShklyannik on 26.03.2017.
+ * Created by DenisShklyannik on 27.05.2017.
  */
-public class LoginGTest extends BaseTest{
+public class SendEmail extends BaseTest {
 
     private static final String BASE_URL = "https://www.google.com/gmail/";
     private static final String GMAIL_LABEL = "Gmail";
@@ -36,8 +39,8 @@ public class LoginGTest extends BaseTest{
     @ExternalParameters({ "login", "password" })
     public void loginTest(String getLogin, String getPassword) throws InterruptedException, NoSuchElementException {
 
-        GMainPage mainPage = new GMainPage(driver);
-        GEmailPage emailPage = new GEmailPage(driver);
+        GoogleSignInPage mainPage = new GoogleSignInPage(driver);
+        GoogleEmailPage emailPage = new GoogleEmailPage(driver);
 
         mainPage.loginAs(getLogin, getPassword);
         Assert.assertEquals(emailPage.getLabelText(), GMAIL_LABEL);
@@ -50,4 +53,5 @@ public class LoginGTest extends BaseTest{
     public void tearDown() {
         driver.quit();
     }
+
 }

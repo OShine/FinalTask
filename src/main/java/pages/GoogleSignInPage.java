@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Created by DenisShklyannik on 26.03.2017.
  */
-public class GMainPage {
+public class GoogleSignInPage {
 
     private static final By MAILBOX = By.xpath(".//*[@id='identifierId']");
     private static final By MAILBOX_NEXT_BUTTON = By.xpath(".//*[@id='identifierNext']/content/span");
@@ -21,7 +21,7 @@ public class GMainPage {
 
     private WebDriver driver;
 
-    public GMainPage(WebDriver driver) {
+    public GoogleSignInPage(WebDriver driver) {
         this.driver = driver;
     }
 
