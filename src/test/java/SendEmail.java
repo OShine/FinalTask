@@ -39,13 +39,13 @@ public class SendEmail extends BaseTest {
     @ExternalParameters({ "login", "password" })
     public void loginTest(String getLogin, String getPassword) throws InterruptedException, NoSuchElementException {
 
-        GoogleSignInPage mainPage = new GoogleSignInPage(driver);
-        GoogleEmailPage emailPage = new GoogleEmailPage(driver);
+        GoogleSignInPage GoogleSignInPage = new GoogleSignInPage(driver);
+        GoogleEmailPage GoogleEmailPage = new GoogleEmailPage(driver);
 
-        mainPage.loginAs(getLogin, getPassword);
-        Assert.assertEquals(emailPage.getLabelText(), GMAIL_LABEL);
-        emailPage.logout();
-        Assert.assertEquals(mainPage.getSpanText(), SPAN_TEXT, "Login field is not presented");
+        GoogleSignInPage.loginAs(getLogin, getPassword);
+        Assert.assertEquals(GoogleEmailPage.getLabelText(), GMAIL_LABEL);
+        GoogleEmailPage.logout();
+        Assert.assertEquals(GoogleSignInPage.getSpanText(), SPAN_TEXT, "Login field is not presented");
 
     }
 
