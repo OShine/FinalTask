@@ -19,6 +19,7 @@ public class SendEmail {
     private static final String FIRST_USER_LOGIN = "seleniumtests10@gmail.com";
     private static final String SECOND_USER_LOGIN = "seleniumtests30@gmail.com";
     private static final String USER_PASSWORD = "060788avavav";
+    private static final String MARK_AS_READ = "Mark as read";
     private WebDriver driver;
 
     @BeforeClass
@@ -53,10 +54,8 @@ public class SendEmail {
         GoogleSignInPage.loginAs(SECOND_USER_LOGIN, USER_PASSWORD);
         Assert.assertEquals(GoogleEmailPage.getLabelText(), GMAIL_LABEL);
 
-        Thread.sleep(5000);
+        Assert.assertEquals(GoogleEmailPage.checkMessageExistence(), MARK_AS_READ);
 
-
-        //https://stackoverflow.com/questions/36686613/automating-gmail-to-send-mail-using-java-and-selenium-webdriver-with-added-signa
     }
 
     @AfterClass
