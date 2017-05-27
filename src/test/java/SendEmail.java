@@ -53,9 +53,7 @@ public class SendEmail {
 
         GoogleSignInPage.loginAs(SECOND_USER_LOGIN, USER_PASSWORD);
         Assert.assertEquals(GoogleEmailPage.getLabelText(), GMAIL_LABEL);
-
         Assert.assertEquals(GoogleEmailPage.checkMessageExistence(), MARK_AS_READ);
-
     }
 
     @AfterClass
