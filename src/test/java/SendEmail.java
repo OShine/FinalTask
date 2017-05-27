@@ -9,8 +9,6 @@ import org.testng.annotations.Test;
 import pages.GoogleEmailPage;
 import pages.GoogleSignInPage;
 
-import java.util.concurrent.TimeUnit;
-
 /**
  * Created by DenisShklyannik on 27.05.2017.
  */
@@ -58,7 +56,6 @@ public class SendEmail {
         Thread.sleep(5000);
 
 
-       // Assert.assertEquals(GoogleSignInPage.getSpanText(), SPAN_TEXT, "Login field is not presented");
         //https://stackoverflow.com/questions/36686613/automating-gmail-to-send-mail-using-java-and-selenium-webdriver-with-added-signa
     }
 
