@@ -20,8 +20,13 @@ public class GoogleEmailPage {
     private static final By THEME_MESSAGE_FIELD = By.name("subjectbox");
     private static final By SEND_MESSAGE_BUTTON = By.xpath("//div[text()='Отправить']");
     private static final By LOADING = By.xpath("//div[contains(text(),'Письмо')]");
+    private static final By CHAIN = By.xpath("//div/span[contains(text(),'Цепочка отправлена в корзину.')]");
     private static final By EMAIL_THEME_TEXT = By.xpath("//div [@class='y6']/span[contains(.,'New Test Message')]");
     private static final By MARK_AS_READ_TEXT = By.xpath("//div[contains(text(),'Mark as read')]");
+    private static final By MARK_AS_UNREAD_TEXT = By.xpath("//div[contains(text(),'Отметить как непрочитанное')]");
+    private static final By DELETE_FOREVER_ACTION_TEXT = By.xpath("//div[contains(text(),'Удалить навсегда')]");
+    private static final By DELETE_ACTION_TEXT= By.xpath("//div[contains(text(),'Удалить')]");
+    private static final By CONFIRMATION_BUTTON = By.xpath(".//*[@name='ok']");
     private static final String SECOND_USER_LOGIN = "seleniumtests30@gmail.com";
     private static final String THEME = "New Test Message";
 
@@ -81,7 +86,7 @@ public class GoogleEmailPage {
 
     }
 
-    public boolean isElementPresent(WebDriver driver) {
+    public boolean isSendElementPresent(WebDriver driver) {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         try
         {
@@ -98,12 +103,55 @@ public class GoogleEmailPage {
         }
     }
 
-    public String checkMessageExistence() {
-        WebElement message_is_exist = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(EMAIL_THEME_TEXT));
+    public boolean isDeleteElementPresent(WebDriver driver) {
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        try
+        {
+            driver.findElement(CHAIN);
+            return true;
+        }
+        catch(NoSuchElementException e)
+        {
+            return false;
+        }
+        finally
+        {
+            driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        }
+    }
+
+    public String checkInComeMessageExistence() {
+        WebElement income_message_is_exist = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(EMAIL_THEME_TEXT));
         Actions builder = new Actions(driver);
-        builder.contextClick(message_is_exist).sendKeys(Keys.ARROW_DOWN).perform();
-        WebElement message_is_exist_text = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(MARK_AS_READ_TEXT));
-        return message_is_exist_text.getText();
+        builder.contextClick(income_message_is_exist).sendKeys(Keys.ARROW_DOWN).perform();
+        WebElement income_message_is_exist_text = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(MARK_AS_READ_TEXT));
+        return income_message_is_exist_text.getText();
+    }
+
+    public String checkOutComeMessageExistence() {
+        WebElement outcome_message_is_exist = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(EMAIL_THEME_TEXT));
+        Actions builder = new Actions(driver);
+        builder.contextClick(outcome_message_is_exist).sendKeys(Keys.ARROW_DOWN).perform();
+        WebElement outcome_message_is_exist_text = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(MARK_AS_UNREAD_TEXT));
+        return outcome_message_is_exist_text.getText();
+    }
+
+    public String checkDeletedMessageExistence() {
+        WebElement delete_message_is_exist = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(EMAIL_THEME_TEXT));
+        Actions builder = new Actions(driver);
+        builder.contextClick(delete_message_is_exist).sendKeys(Keys.ARROW_DOWN).perform();
+        WebElement delete_message_is_exist_text = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(DELETE_FOREVER_ACTION_TEXT));
+        return delete_message_is_exist_text.getText();
+    }
+
+    public void deleteMessageToTrashFolder() {
+        WebElement delete_message_is_exist = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(EMAIL_THEME_TEXT));
+        Actions builder = new Actions(driver);
+        builder.contextClick(delete_message_is_exist).sendKeys(Keys.ARROW_DOWN).perform();
+        WebElement delete_message_delete_action_text = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(DELETE_ACTION_TEXT));
+        delete_message_delete_action_text.click();
+        WebElement confirmation_button = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(CONFIRMATION_BUTTON));
+        confirmation_button.click();
     }
 
 }
