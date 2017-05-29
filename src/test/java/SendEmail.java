@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.GoogleEmailPage;
 import pages.GoogleSignInPage;
+import ru.yandex.qatools.allure.annotations.Description;
 
 /**
  * Created by DenisShklyannik on 27.05.2017.
@@ -37,6 +38,7 @@ public class SendEmail {
     }
 
     @Test
+    @Description("Verify the ability to send emails")
     public void sendEmailTest() throws InterruptedException, NoSuchElementException {
 
         GoogleSignInPage GoogleSignInPage = new GoogleSignInPage(driver);
@@ -54,6 +56,20 @@ public class SendEmail {
         GoogleSignInPage.loginAs(SECOND_USER_LOGIN, USER_PASSWORD);
         Assert.assertEquals(GoogleEmailPage.getLabelText(), MAIL_LABEL);
         Assert.assertEquals(GoogleEmailPage.checkMessageExistence(), MARK_AS_READ);
+    }
+
+    @Test
+    @Description("Verify that sent email appears in Sent Mail folder")
+    public void sendEmailFolderTest() throws InterruptedException, NoSuchElementException {
+
+        GoogleSignInPage GoogleSignInPage = new GoogleSignInPage(driver);
+        GoogleEmailPage GoogleEmailPage = new GoogleEmailPage(driver);
+
+        GoogleSignInPage.loginAs(FIRST_USER_LOGIN, USER_PASSWORD);
+        Assert.assertEquals(GoogleEmailPage.getLabelText(), MAIL_LABEL);
+        GoogleEmailPage.sendEmailMessage();
+        GoogleEmailPage.isElementPresent(driver);
+
     }
 
     @AfterClass
