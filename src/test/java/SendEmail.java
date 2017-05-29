@@ -16,6 +16,8 @@ import ru.yandex.qatools.allure.annotations.Description;
 public class SendEmail {
 
     private static final String BASE_URL = "https://mail.google.com/mail/";
+    private static final String SENT_URL = BASE_URL + "u/0/#sent";
+    private static final String TRASH_URL = BASE_URL + "/u/0/#trash";
     private static final String MAIL_LABEL = "Gmail";
     private static final String FIRST_USER_LOGIN = "seleniumtests10@gmail.com";
     private static final String SECOND_USER_LOGIN = "seleniumtests30@gmail.com";
@@ -38,7 +40,7 @@ public class SendEmail {
         driver.navigate().refresh();
     }
 
-    @Test(priority = 1, enabled = false)
+    @Test(priority = 1)
     @Description("Verify the ability to send emails")
     public void sendEmailTest() throws InterruptedException, NoSuchElementException {
 
@@ -55,7 +57,6 @@ public class SendEmail {
         driver.navigate().refresh();
 
         GoogleSignInPage.loginAs(SECOND_USER_LOGIN, USER_PASSWORD);
-        Assert.assertEquals(GoogleEmailPage.getLabelText(), MAIL_LABEL);
         Assert.assertEquals(GoogleEmailPage.checkInComeMessageExistence(), MARK_AS_READ);
         GoogleEmailPage.logout();
     }
@@ -68,11 +69,10 @@ public class SendEmail {
         GoogleEmailPage GoogleEmailPage = new GoogleEmailPage(driver);
 
         GoogleSignInPage.loginAs(FIRST_USER_LOGIN, USER_PASSWORD);
-        Assert.assertEquals(GoogleEmailPage.getLabelText(), MAIL_LABEL);
         GoogleEmailPage.sendEmailMessage();
         GoogleEmailPage.isSendElementPresent(driver);
 
-        driver.get(BASE_URL + "u/0/#sent");
+        driver.get(SENT_URL);
         Assert.assertEquals(GoogleEmailPage.checkOutComeMessageExistence(), MARK_AS_UNREAD);
         GoogleEmailPage.logout();
     }
@@ -87,11 +87,11 @@ public class SendEmail {
         GoogleSignInPage.loginAs(FIRST_USER_LOGIN, USER_PASSWORD);
         Assert.assertEquals(GoogleEmailPage.getLabelText(), MAIL_LABEL);
 
-        driver.get(BASE_URL + "u/0/#sent");
+        driver.get(SENT_URL);
         GoogleEmailPage.deleteMessageToTrashFolder();
         GoogleEmailPage.isDeleteElementPresent(driver);
 
-        driver.get(BASE_URL + "/u/0/#trash");
+        driver.get(TRASH_URL);
         Assert.assertEquals(GoogleEmailPage.checkDeletedMessageExistence(), DELETE_FOREVER);
         GoogleEmailPage.logout();
     }
