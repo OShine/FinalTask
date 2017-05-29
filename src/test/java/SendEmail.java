@@ -15,7 +15,7 @@ import pages.GoogleSignInPage;
 public class SendEmail {
 
     private static final String BASE_URL = "https://www.google.com/gmail/";
-    private static final String GMAIL_LABEL = "Gmail";
+    private static final String MAIL_LABEL = "Gmail";
     private static final String FIRST_USER_LOGIN = "seleniumtests10@gmail.com";
     private static final String SECOND_USER_LOGIN = "seleniumtests30@gmail.com";
     private static final String USER_PASSWORD = "060788avavav";
@@ -43,7 +43,7 @@ public class SendEmail {
         GoogleEmailPage GoogleEmailPage = new GoogleEmailPage(driver);
 
         GoogleSignInPage.loginAs(FIRST_USER_LOGIN, USER_PASSWORD);
-        Assert.assertEquals(GoogleEmailPage.getLabelText(), GMAIL_LABEL);
+        Assert.assertEquals(GoogleEmailPage.getLabelText(), MAIL_LABEL);
         GoogleEmailPage.sendEmailMessage();
         GoogleEmailPage.isElementPresent(driver);
         GoogleEmailPage.logout();
@@ -52,7 +52,7 @@ public class SendEmail {
         driver.navigate().refresh();
 
         GoogleSignInPage.loginAs(SECOND_USER_LOGIN, USER_PASSWORD);
-        Assert.assertEquals(GoogleEmailPage.getLabelText(), GMAIL_LABEL);
+        Assert.assertEquals(GoogleEmailPage.getLabelText(), MAIL_LABEL);
         Assert.assertEquals(GoogleEmailPage.checkMessageExistence(), MARK_AS_READ);
     }
 

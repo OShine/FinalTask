@@ -14,7 +14,7 @@ import pages.GoogleSignInPage;
 public class LoginAndLogout extends BaseTest{
 
     private static final String BASE_URL = "https://www.google.com/gmail/";
-    private static final String GMAIL_LABEL = "Gmail";
+    private static final String MAIL_LABEL = "Gmail";
     private static final String SPAN_TEXT = "NEXT";
     private WebDriver driver;
 
@@ -40,7 +40,7 @@ public class LoginAndLogout extends BaseTest{
         GoogleEmailPage GoogleEmailPage = new GoogleEmailPage(driver);
 
         GoogleSignInPage.loginAs(getLogin, getPassword);
-        Assert.assertEquals(GoogleEmailPage.getLabelText(), GMAIL_LABEL);
+        Assert.assertEquals(GoogleEmailPage.getLabelText(), MAIL_LABEL);
         GoogleEmailPage.logout();
         Assert.assertEquals(GoogleSignInPage.getSpanText(), SPAN_TEXT, "Login field is not presented");
 
