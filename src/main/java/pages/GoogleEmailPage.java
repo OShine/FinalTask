@@ -87,7 +87,7 @@ public class GoogleEmailPage {
     }
 
     public boolean isSendElementPresent(WebDriver driver) {
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
         try
         {
             driver.findElement(LOADING);
@@ -104,7 +104,7 @@ public class GoogleEmailPage {
     }
 
     public boolean isDeleteElementPresent(WebDriver driver) {
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
         try
         {
             driver.findElement(CHAIN);
@@ -116,7 +116,7 @@ public class GoogleEmailPage {
         }
         finally
         {
-            driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         }
     }
 
@@ -144,14 +144,15 @@ public class GoogleEmailPage {
         return delete_message_is_exist_text.getText();
     }
 
-    public void deleteMessageToTrashFolder() {
-        WebElement delete_message_is_exist = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(EMAIL_THEME_TEXT));
+    public void deleteMessageToTrashFolder() throws InterruptedException {
+        WebElement delete_message_is_exist = (new WebDriverWait(driver, 500)).until(ExpectedConditions.presenceOfElementLocated(EMAIL_THEME_TEXT));
         Actions builder = new Actions(driver);
         builder.contextClick(delete_message_is_exist).sendKeys(Keys.ARROW_DOWN).perform();
-        WebElement delete_message_delete_action_text = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(DELETE_ACTION_TEXT));
+        WebElement delete_message_delete_action_text = (new WebDriverWait(driver, 500)).until(ExpectedConditions.presenceOfElementLocated(DELETE_ACTION_TEXT));
         delete_message_delete_action_text.click();
-        WebElement confirmation_button = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(CONFIRMATION_BUTTON));
+        WebElement confirmation_button = (new WebDriverWait(driver, 500)).until(ExpectedConditions.presenceOfElementLocated(CONFIRMATION_BUTTON));
         confirmation_button.click();
+        new WebDriverWait(driver, 3000).until(ExpectedConditions.invisibilityOfElementLocated(By.className("Kj-JD")));
     }
 
 }

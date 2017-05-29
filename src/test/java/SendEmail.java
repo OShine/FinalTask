@@ -27,7 +27,6 @@ public class SendEmail {
 
     @BeforeClass
     public void Before() {
-
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(BASE_URL);
@@ -39,7 +38,7 @@ public class SendEmail {
         driver.navigate().refresh();
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, enabled = false)
     @Description("Verify the ability to send emails")
     public void sendEmailTest() throws InterruptedException, NoSuchElementException {
 
@@ -58,6 +57,7 @@ public class SendEmail {
         GoogleSignInPage.loginAs(SECOND_USER_LOGIN, USER_PASSWORD);
         Assert.assertEquals(GoogleEmailPage.getLabelText(), MAIL_LABEL);
         Assert.assertEquals(GoogleEmailPage.checkInComeMessageExistence(), MARK_AS_READ);
+        GoogleEmailPage.logout();
     }
 
     @Test(priority = 2)
@@ -73,7 +73,6 @@ public class SendEmail {
         GoogleEmailPage.isSendElementPresent(driver);
 
         driver.get(BASE_URL + "u/0/#sent");
-        Assert.assertEquals(GoogleEmailPage.getLabelText(), MAIL_LABEL);
         Assert.assertEquals(GoogleEmailPage.checkOutComeMessageExistence(), MARK_AS_UNREAD);
         GoogleEmailPage.logout();
     }
@@ -89,12 +88,12 @@ public class SendEmail {
         Assert.assertEquals(GoogleEmailPage.getLabelText(), MAIL_LABEL);
 
         driver.get(BASE_URL + "u/0/#sent");
-        Assert.assertEquals(GoogleEmailPage.getLabelText(), MAIL_LABEL);
         GoogleEmailPage.deleteMessageToTrashFolder();
         GoogleEmailPage.isDeleteElementPresent(driver);
+
         driver.get(BASE_URL + "/u/0/#trash");
-        Assert.assertEquals(GoogleEmailPage.getLabelText(), MAIL_LABEL);
         Assert.assertEquals(GoogleEmailPage.checkDeletedMessageExistence(), DELETE_FOREVER);
+        GoogleEmailPage.logout();
     }
 
     @AfterClass
