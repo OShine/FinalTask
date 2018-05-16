@@ -17,7 +17,7 @@ public class SendEmail {
     private GoogleEmailPage googleEmailPage;
     private GoogleSignInPage googleSignInPage;
 
-    private static final String BASE_URL = "https://mail.google.com/mail/";
+    private static final String BASE_URL = "https://mail.google.com/";
     private static final String SENT_URL = BASE_URL + "u/0/#sent";
     private static final String TRASH_URL = BASE_URL + "/u/0/#trash";
     private static final String MAIL_LABEL = "Gmail";
@@ -50,14 +50,14 @@ public class SendEmail {
         Assert.assertEquals(googleEmailPage.getLabelText(), MAIL_LABEL);
         googleEmailPage.sendEmailMessage();
         googleEmailPage.isSendElementPresent();
-        googleEmailPage.logOut(); //
+        googleEmailPage.logout(); //
 
         Driver.clearAllCookies();
         Driver.refreshThePage();
 
         googleSignInPage.loginAs(SECOND_USER_LOGIN, USER_PASSWORD);
         Assert.assertEquals(googleEmailPage.checkInComeMessageExistence(), MARK_AS_READ);
-        googleEmailPage.logOut(); //
+        googleEmailPage.logout(); //
     }
 
     @Test(priority = 2)
@@ -73,7 +73,7 @@ public class SendEmail {
 
         Driver.openPage(SENT_URL);
         Assert.assertEquals(googleEmailPage.checkOutComeMessageExistence(), MARK_AS_UNREAD);
-        googleEmailPage.logOut(); //
+        googleEmailPage.logout(); //
     }
 
     @Test(priority = 3)
@@ -92,7 +92,7 @@ public class SendEmail {
 
         Driver.openPage(TRASH_URL);
         Assert.assertEquals(googleEmailPage.checkDeletedMessageExistence(), DELETE_FOREVER);
-        googleEmailPage.logOut(); //
+        googleEmailPage.logout(); //
     }
 
     @AfterClass

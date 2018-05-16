@@ -5,18 +5,17 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import util.Logout;
 
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by DenisShklyannik on 26.03.2017.
  */
-public class GoogleEmailPage extends Page implements Logout {
+public class GoogleEmailPage extends Page{
 
     private static final By GMAIL_LABEL = By.xpath(".//*[@id=':i']/span");
-    //private static final By LOGIN_SPAN = By.xpath(".//*[@id='gb']/div[1]/div[1]/div[2]/div[4]/div[1]/a");
-    //private static final By LOGOUT_BUTTON = By.xpath(".//*[@id='gb_71']");
+    private static final By LOGIN_SPAN = By.xpath(".//*[@id='gb']/div[1]/div[1]/div[2]/div[4]/div[1]/a");
+    private static final By LOGOUT_BUTTON = By.xpath(".//*[@id='gb_71']");
     private static final By WRITE_MESSAGE_BUTTON = By.xpath("//div[contains(text(),'COMPOSE')]");
     private static final By TO_MESSAGE_FIELD = By.xpath(".//textarea[contains(@aria-label, 'To')]");
     private static final By THEME_MESSAGE_FIELD = By.name("subjectbox");
@@ -46,20 +45,20 @@ public class GoogleEmailPage extends Page implements Logout {
         //return driver.findElement(GMAIL_LABEL).getText();
     }
 
-//    public void clickLoginSpanButton() {
-//        WebElement login_span = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(LOGIN_SPAN));
-//        login_span.click();
-//    }
-//
-//    public void clickLogoutButton() {
-//        WebElement logout_button = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(LOGOUT_BUTTON));
-//        logout_button.click();
-//    }
-//
-//    public void logout() {
-//        clickLoginSpanButton();
-//        clickLogoutButton();
-//    }
+    private void clickLoginSpanButton() {
+        WebElement login_span = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(LOGIN_SPAN));
+        login_span.click();
+    }
+
+    private void clickLogoutButton() {
+        WebElement logout_button = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(LOGOUT_BUTTON));
+        logout_button.click();
+    }
+
+    public void logout() {
+        clickLoginSpanButton();
+        clickLogoutButton();
+    }
 
     private void clickWriteMessageButton() {
         WebElement write_message = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(WRITE_MESSAGE_BUTTON));

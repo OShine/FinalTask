@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Driver {
 
-    private static final String BASE_URL = "https://mail.google.com/mail/";
+    private static final String BASE_URL = "https://mail.google.com/";
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
 
