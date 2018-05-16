@@ -1,8 +1,7 @@
 import by.issoft.BaseTest;
 import by.issoft.annotation.ExternalParameters;
+import driver.Driver;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.GoogleEmailPage;
@@ -13,41 +12,39 @@ import pages.GoogleSignInPage;
  */
 public class LoginAndLogout extends BaseTest{
 
-    private static final String BASE_URL = "https://www.google.com/gmail/";
+    private GoogleEmailPage googleEmailPage;
+    private GoogleSignInPage googleSignInPage;
+
     private static final String MAIL_LABEL = "Gmail";
     private static final String SPAN_TEXT = "NEXT";
-    private WebDriver driver;
 
     @BeforeClass
-    public void Before() {
-
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get(BASE_URL);
+    public void Before()  {
+        Driver.openHomePage();
     }
 
     @BeforeMethod
     public void BeforeMethod() {
-        driver.manage().deleteAllCookies();
-        driver.navigate().refresh();
+        Driver.clearAllCookies();
+        Driver.refreshThePage();
     }
 
     @Test(dataProvider = "fromCSV")
     @ExternalParameters({ "login", "password" })
-    public void loginAndLogoutTest(String getLogin, String getPassword) throws InterruptedException, NoSuchElementException {
+    public void loginAndLogoutTest(String getLogin, String getPassword) throws NoSuchElementException {
 
-        GoogleSignInPage GoogleSignInPage = new GoogleSignInPage(driver);
-        GoogleEmailPage GoogleEmailPage = new GoogleEmailPage(driver);
+        googleEmailPage = new GoogleEmailPage();
+        googleSignInPage = new GoogleSignInPage();
 
-        GoogleSignInPage.loginAs(getLogin, getPassword);
-        Assert.assertEquals(GoogleEmailPage.getLabelText(), MAIL_LABEL);
-        GoogleEmailPage.logout();
-        Assert.assertEquals(GoogleSignInPage.getSpanText(), SPAN_TEXT, "Login field is not presented");
+        googleSignInPage.loginAs(getLogin, getPassword);
+        Assert.assertEquals(googleEmailPage.getLabelText(), MAIL_LABEL);
+        googleEmailPage.logOut(); //
+        Assert.assertEquals(googleSignInPage.getSpanText(), SPAN_TEXT, "Login field is not presented");
 
     }
 
     @AfterClass
     public void tearDown() {
-        driver.quit();
+        Driver.closeDriver();
     }
 }
