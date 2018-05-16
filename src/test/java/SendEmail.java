@@ -18,6 +18,7 @@ public class SendEmail {
     private GoogleSignInPage googleSignInPage;
 
     private static final String BASE_URL = "https://mail.google.com/";
+    //private static final String BASE_URL = "https://accounts.google.com/ServiceLogin/identifier?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin";
     private static final String SENT_URL = BASE_URL + "u/0/#sent";
     private static final String TRASH_URL = BASE_URL + "/u/0/#trash";
     private static final String MAIL_LABEL = "Gmail";

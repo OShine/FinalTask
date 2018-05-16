@@ -37,9 +37,9 @@ public class LoginAndLogout extends BaseTest{
         googleSignInPage = new GoogleSignInPage();
 
         googleSignInPage.loginAs(getLogin, getPassword);
-        //Assert.assertEquals(googleEmailPage.getLabelText(), MAIL_LABEL);
-        googleEmailPage.logout(); //
-        //Assert.assertEquals(googleSignInPage.getSpanText(), SPAN_TEXT, "Login field is not presented");
+        Assert.assertEquals(googleEmailPage.getLabelText(), MAIL_LABEL);
+        googleEmailPage.logout();
+        Assert.assertEquals(googleSignInPage.getSpanText(), SPAN_TEXT, "Login field is not presented");
 
     }
 

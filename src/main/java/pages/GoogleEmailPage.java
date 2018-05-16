@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class GoogleEmailPage extends Page{
 
     private static final By GMAIL_LABEL = By.xpath(".//*[@id=':i']/span");
-    private static final By LOGIN_SPAN = By.xpath(".//*[@id='gb']/div[1]/div[1]/div[2]/div[4]/div[1]/a");
+    private static final By LOGIN_SPAN = By.xpath(".//*[@id='gb']/div[1]/div[1]/div[2]/div[5]/div[1]/a");
     private static final By LOGOUT_BUTTON = By.xpath(".//*[@id='gb_71']");
     private static final By WRITE_MESSAGE_BUTTON = By.xpath("//div[contains(text(),'COMPOSE')]");
     private static final By TO_MESSAGE_FIELD = By.xpath(".//textarea[contains(@aria-label, 'To')]");
@@ -40,18 +40,17 @@ public class GoogleEmailPage extends Page{
     }
 
     public String getLabelText() {
-        WebElement label = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(GMAIL_LABEL));
+        WebElement label = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(GMAIL_LABEL));
         return label.getText();
-        //return driver.findElement(GMAIL_LABEL).getText();
     }
 
     private void clickLoginSpanButton() {
-        WebElement login_span = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(LOGIN_SPAN));
+        WebElement login_span = (new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(LOGIN_SPAN));
         login_span.click();
     }
 
     private void clickLogoutButton() {
-        WebElement logout_button = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(LOGOUT_BUTTON));
+        WebElement logout_button = (new WebDriverWait(driver, 20)).until(ExpectedConditions.elementToBeClickable(LOGOUT_BUTTON));
         logout_button.click();
     }
 
@@ -61,24 +60,24 @@ public class GoogleEmailPage extends Page{
     }
 
     private void clickWriteMessageButton() {
-        WebElement write_message = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(WRITE_MESSAGE_BUTTON));
+        WebElement write_message = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(WRITE_MESSAGE_BUTTON));
         write_message.click();
     }
 
     private void enterToMessage() {
-        WebElement to_message_field = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(TO_MESSAGE_FIELD));
+        WebElement to_message_field = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(TO_MESSAGE_FIELD));
         to_message_field.clear();
         to_message_field.sendKeys(SECOND_USER_LOGIN);
     }
 
     private void enterThemeMessage() {
-        WebElement theme_message_field = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(THEME_MESSAGE_FIELD));
+        WebElement theme_message_field = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(THEME_MESSAGE_FIELD));
         theme_message_field.clear();
         theme_message_field.sendKeys(THEME);
     }
 
     private void clickSendMessageButton() {
-        WebElement send_message_button = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(SEND_MESSAGE_BUTTON));
+        WebElement send_message_button = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(SEND_MESSAGE_BUTTON));
         send_message_button.click();
     }
 
@@ -125,26 +124,26 @@ public class GoogleEmailPage extends Page{
     }
 
     public String checkInComeMessageExistence() {
-        WebElement income_message_is_exist = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(EMAIL_THEME_TEXT));
+        WebElement income_message_is_exist = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(EMAIL_THEME_TEXT));
         Actions builder = new Actions(driver);
         builder.contextClick(income_message_is_exist).sendKeys(Keys.ARROW_DOWN).perform();
-        WebElement income_message_is_exist_text = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(MARK_AS_READ_TEXT));
+        WebElement income_message_is_exist_text = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(MARK_AS_READ_TEXT));
         return income_message_is_exist_text.getText();
     }
 
     public String checkOutComeMessageExistence() {
-        WebElement outcome_message_is_exist = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(EMAIL_THEME_TEXT));
+        WebElement outcome_message_is_exist = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(EMAIL_THEME_TEXT));
         Actions builder = new Actions(driver);
         builder.contextClick(outcome_message_is_exist).sendKeys(Keys.ARROW_DOWN).perform();
-        WebElement outcome_message_is_exist_text = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(MARK_AS_UNREAD_TEXT));
+        WebElement outcome_message_is_exist_text = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(MARK_AS_UNREAD_TEXT));
         return outcome_message_is_exist_text.getText();
     }
 
     public String checkDeletedMessageExistence() {
-        WebElement delete_message_is_exist = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(EMAIL_THEME_TEXT));
+        WebElement delete_message_is_exist = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(EMAIL_THEME_TEXT));
         Actions builder = new Actions(driver);
         builder.contextClick(delete_message_is_exist).sendKeys(Keys.ARROW_DOWN).perform();
-        WebElement delete_message_is_exist_text = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(DELETE_FOREVER_ACTION_TEXT));
+        WebElement delete_message_is_exist_text = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(DELETE_FOREVER_ACTION_TEXT));
         return delete_message_is_exist_text.getText();
     }
 
