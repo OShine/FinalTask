@@ -25,8 +25,8 @@ public class SendEmail {
     private static final String SECOND_USER_LOGIN = "seleniumtests30@gmail.com";
     private static final String USER_PASSWORD = "060788avavav";
     private static final String MARK_AS_READ = "Mark as read";
-    private static final String MARK_AS_UNREAD = "Отметить как непрочитанное";
-    private static final String DELETE_FOREVER = "Удалить навсегда";
+    private static final String MARK_AS_UNREAD = "Mark as unread";
+    private static final String DELETE_FOREVER = "Delete forever";
 
     @BeforeClass
     public void Before()  {

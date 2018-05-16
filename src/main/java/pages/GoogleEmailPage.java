@@ -17,19 +17,19 @@ public class GoogleEmailPage extends Page implements Logout {
     private static final By GMAIL_LABEL = By.xpath(".//*[@id=':i']/span");
     //private static final By LOGIN_SPAN = By.xpath(".//*[@id='gb']/div[1]/div[1]/div[2]/div[4]/div[1]/a");
     //private static final By LOGOUT_BUTTON = By.xpath(".//*[@id='gb_71']");
-    private static final By WRITE_MESSAGE_BUTTON = By.xpath("//div[contains(text(),'НАПИСАТЬ')]");
-    private static final By TO_MESSAGE_FIELD = By.xpath(".//textarea[contains(@aria-label, 'Кому')]");
+    private static final By WRITE_MESSAGE_BUTTON = By.xpath("//div[contains(text(),'COMPOSE')]");
+    private static final By TO_MESSAGE_FIELD = By.xpath(".//textarea[contains(@aria-label, 'To')]");
     private static final By THEME_MESSAGE_FIELD = By.name("subjectbox");
-    private static final By SEND_MESSAGE_BUTTON = By.xpath("//div[text()='Отправить']");
-    private static final By LOADING = By.xpath("//div[contains(text(),'Письмо')]");
-    private static final By CHAIN = By.xpath("//div/span[contains(text(),'Цепочка отправлена в корзину.')]");
+    private static final By SEND_MESSAGE_BUTTON = By.xpath("//div[text()='Send']");
+    private static final By LOADING = By.xpath("//div[contains(text(),'Message')]");
+    private static final By CHAIN = By.xpath("//div/span[contains(text(),'The conversation has been moved to the Bin.')]");
     private static final By EMAIL_THEME_TEXT = By.xpath("//div [@class='y6']/span[contains(.,'New Test Message')]");
     private static final By MARK_AS_READ_TEXT = By.xpath("//div[contains(text(),'Mark as read')]");
-    private static final By MARK_AS_UNREAD_TEXT = By.xpath("//div[contains(text(),'Отметить как непрочитанное')]");
-    private static final By DELETE_FOREVER_ACTION_TEXT = By.xpath("//div[contains(text(),'Удалить навсегда')]");
-    private static final By DELETE_ACTION_TEXT= By.xpath("//div[contains(text(),'Удалить')]");
+    private static final By MARK_AS_UNREAD_TEXT = By.xpath("//div[contains(text(),'Mark as unread)]");
+    private static final By DELETE_FOREVER_ACTION_TEXT = By.xpath("//div[contains(text(),'Delete forever')]");
+    private static final By DELETE_ACTION_TEXT= By.xpath("//div[contains(text(),'Delete')]");
     private static final By CONFIRMATION_BUTTON = By.xpath(".//*[@name='ok']");
-    private static final String TITLE = "";
+    private static final String TITLE = "Inbox";
     private static final String SECOND_USER_LOGIN = "seleniumtests30@gmail.com";
     private static final String THEME = "New Test Message";
 

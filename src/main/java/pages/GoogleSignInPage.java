@@ -18,7 +18,7 @@ public class GoogleSignInPage extends Page implements Logout {
     private static final By PASSWORD_PASSWORD = By.xpath(".//*[@id='password']/div[1]/div/div[1]/input");
     private static final By PASSWORD_NEXT_BUTTON = By.xpath(".//*[@id='passwordNext']");
     private static final By SPAN_TEXT = By.xpath(".//*[@id='passwordNext']/content/span");
-    private static final String TITLE = "";
+    private static final String TITLE = "Gmail";
 
     private WebDriver driver;
 
