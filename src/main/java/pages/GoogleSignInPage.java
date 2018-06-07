@@ -28,25 +28,25 @@ public class GoogleSignInPage extends Page {
 
     private void setLogin(String login) {
 
-        WebElement mailbox = (new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(MAILBOX));
+        WebElement mailbox = (new WebDriverWait(driver, 20)).until(ExpectedConditions.elementToBeClickable(MAILBOX));
         mailbox.clear();
         mailbox.sendKeys(login);
-        WebElement mailbox_button = (new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(MAILBOX_NEXT_BUTTON));
+        WebElement mailbox_button = (new WebDriverWait(driver, 20)).until(ExpectedConditions.elementToBeClickable(MAILBOX_NEXT_BUTTON));
         mailbox_button.click();
     }
 
     private void setPassword(String password) {
-        WebElement set_password = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(PASSWORD_PASSWORD));
+        WebElement set_password = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(PASSWORD_PASSWORD));
         set_password.sendKeys(password);
     }
 
     private void clickLoginButton() {
-        WebElement password_next_button = (new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(PASSWORD_NEXT_BUTTON));
+        WebElement password_next_button = (new WebDriverWait(driver, 20)).until(ExpectedConditions.elementToBeClickable(PASSWORD_NEXT_BUTTON));
         password_next_button.click();
     }
 
     public String getSpanText() {
-        WebElement span_text = (new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(SPAN_TEXT));
+        WebElement span_text = (new WebDriverWait(driver, 20)).until(ExpectedConditions.elementToBeClickable(SPAN_TEXT));
         return span_text.getText();
     }
 

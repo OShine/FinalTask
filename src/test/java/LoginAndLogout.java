@@ -23,12 +23,6 @@ public class LoginAndLogout extends BaseTest{
         Driver.openHomePage();
     }
 
-    @BeforeMethod
-    public void BeforeMethod() {
-        Driver.clearAllCookies();
-        Driver.refreshThePage();
-    }
-
     @Test(dataProvider = "fromCSV")
     @ExternalParameters({ "login", "password" })
     public void loginAndLogoutTest(String getLogin, String getPassword) throws NoSuchElementException {
@@ -41,6 +35,12 @@ public class LoginAndLogout extends BaseTest{
         googleEmailPage.logout();
         Assert.assertEquals(googleSignInPage.getSpanText(), SPAN_TEXT, "Login field is not presented");
 
+    }
+
+    @AfterMethod
+    public void AfterMethod() {
+        Driver.clearAllCookies();
+        Driver.refreshThePage();
     }
 
     @AfterClass

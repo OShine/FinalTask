@@ -102,7 +102,7 @@ public class GoogleEmailPage extends Page{
         }
         finally
         {
-            driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
         }
     }
 
