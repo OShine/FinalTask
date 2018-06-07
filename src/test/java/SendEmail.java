@@ -30,27 +30,26 @@ public class SendEmail {
         Driver.openHomePage();
     }
 
-//    @Test(priority = 1)
-//    @Description("Verify the ability to send emails")
-//    public void sendEmailTest() throws NoSuchElementException {
-//
-//        googleEmailPage = new GoogleEmailPage();
-//        googleSignInPage = new GoogleSignInPage();
-//
-//        googleSignInPage.loginAs(FIRST_USER_LOGIN, USER_PASSWORD);
-//        Assert.assertEquals(googleEmailPage.getLabelText(), MAIL_LABEL);
-//        googleEmailPage.sendEmailMessage();
-//        googleEmailPage.isSendElementPresent();
-//        Driver.acceptAlert();
-//        googleEmailPage.logout(); //
-//
-//        Driver.clearAllCookies();
-//        Driver.refreshThePage();
-//
-//        googleSignInPage.loginAs(SECOND_USER_LOGIN, USER_PASSWORD);
-//        Assert.assertEquals(googleEmailPage.checkInComeMessageExistence(), MARK_AS_READ);
-//        googleEmailPage.logout(); //
-//    }
+    @Test(priority = 1)
+    @Description("Verify the ability to send emails")
+    public void sendEmailTest() throws NoSuchElementException {
+
+        googleEmailPage = new GoogleEmailPage();
+        googleSignInPage = new GoogleSignInPage();
+
+        googleSignInPage.loginAs(FIRST_USER_LOGIN, USER_PASSWORD);
+        Assert.assertEquals(googleEmailPage.getLabelText(), MAIL_LABEL);
+        googleEmailPage.sendEmailMessage();
+        googleEmailPage.isSendElementPresent();
+        googleEmailPage.logout();
+
+        Driver.clearAllCookies();
+        Driver.refreshThePage();
+
+        googleSignInPage.loginAs(SECOND_USER_LOGIN, USER_PASSWORD);
+        Assert.assertEquals(googleEmailPage.checkInComeMessageExistence(), MARK_AS_READ);
+        googleEmailPage.logout();
+    }
 
     @Test(priority = 2)
     @Description("Verify that sent email appears in Sent Mail folder")
@@ -65,33 +64,33 @@ public class SendEmail {
 
         Driver.openPage(SENT_URL);
         Assert.assertEquals(googleEmailPage.checkOutComeMessageExistence(), MARK_AS_UNREAD);
+        googleEmailPage.logout();
+    }
+
+    @Test(priority = 3)
+    @Description("Verify that deleted email is listed in Trash")
+    public void checkTrashFolderTest() throws NoSuchElementException {
+
+        googleEmailPage = new GoogleEmailPage();
+        googleSignInPage = new GoogleSignInPage();
+
+        googleSignInPage.loginAs(FIRST_USER_LOGIN, USER_PASSWORD);
+        Assert.assertEquals(googleEmailPage.getLabelText(), MAIL_LABEL);
+
+        Driver.openPage(SENT_URL);
+        googleEmailPage.deleteMessageToTrashFolder();
+        googleEmailPage.isDeleteElementPresent();
+
+        Driver.openPage(TRASH_URL);
+        Assert.assertEquals(googleEmailPage.checkDeletedMessageExistence(), DELETE_FOREVER);
         googleEmailPage.logout(); //
     }
 
-//    @Test(priority = 3)
-//    @Description("Verify that deleted email is listed in Trash")
-//    public void checkTrashFolderTest() throws NoSuchElementException {
-//
-//        googleEmailPage = new GoogleEmailPage();
-//        googleSignInPage = new GoogleSignInPage();
-//
-//        googleSignInPage.loginAs(FIRST_USER_LOGIN, USER_PASSWORD);
-//        Assert.assertEquals(googleEmailPage.getLabelText(), MAIL_LABEL);
-//
-//        Driver.openPage(SENT_URL);
-//        googleEmailPage.deleteMessageToTrashFolder();
-//        googleEmailPage.isDeleteElementPresent();
-//
-//        Driver.openPage(TRASH_URL);
-//        Assert.assertEquals(googleEmailPage.checkDeletedMessageExistence(), DELETE_FOREVER);
-//        googleEmailPage.logout(); //
-//    }
-
-//    @AfterMethod
-//    public void AfterMethod() {
-//        Driver.clearAllCookies();
-//        Driver.refreshThePage();
-//    }
+    @AfterMethod
+    public void AfterMethod() {
+        Driver.clearAllCookies();
+        Driver.openHomePage();
+    }
 
     @AfterClass
     public void tearDown() {

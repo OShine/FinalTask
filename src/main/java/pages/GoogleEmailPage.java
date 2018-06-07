@@ -22,9 +22,9 @@ public class GoogleEmailPage extends Page{
     private static final By SEND_MESSAGE_BUTTON = By.xpath("//div[text()='Send']");
     private static final By LOADING = By.xpath(".//*[@id='link_vsm']");
     private static final By CHAIN = By.xpath("//div/span[contains(text(),'The conversation has been moved to the Bin.')]");
-    private static final By EMAIL_THEME_TEXT = By.xpath("//div [@class='y6']/span[contains(.,'New Test Message')]");
+    private static final By EMAIL_THEME_TEXT = By.xpath("//span/b[contains(text(),'New Test Message')]");
     private static final By MARK_AS_READ_TEXT = By.xpath("//div[contains(text(),'Mark as read')]");
-    private static final By MARK_AS_UNREAD_TEXT = By.xpath("//div[contains(text(),'Mark as unread)]");
+    private static final By MARK_AS_UNREAD_TEXT = By.xpath("//div[contains(text(),'Mark as unread')]");
     private static final By DELETE_FOREVER_ACTION_TEXT = By.xpath("//div[contains(text(),'Delete forever')]");
     private static final By DELETE_ACTION_TEXT= By.xpath("//div[contains(text(),'Delete')]");
     private static final By CONFIRMATION_BUTTON = By.xpath(".//*[@name='ok']");
